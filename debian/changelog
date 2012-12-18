@@ -1,3 +1,9 @@
+theharvester (2.2-1kali3) kali; urgency=low
+
+  * Cleaned up debian files
+
+ -- balding_parrot <balding_parrot@kali.org>  Tue, 18 Dec 2012 22:49:17 +0000
+
 theharvester (2.2-1kali2) kali; urgency=low
 
   * Removed desktop file
