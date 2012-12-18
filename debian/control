@@ -5,8 +5,8 @@ Maintainer: balding_parrot <balding_parrot@kali.org>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.3
 Homepage: https://code.google.com/p/theharvester/
-#Vcs-Git: git://git.debian.org/collab-maint/theharvester.git
-#Vcs-Browser: http://git.debian.org/?p=collab-maint/theharvester.git;a=summary
+#Vcs-Git: ssh://git@git.kali.org/packages/theharvester.git
+#Vcs-Browser: http://git.kali.org/gitweb/?p=packages/theharvester.git;a=summary
 
 Package: theharvester
 Architecture: all

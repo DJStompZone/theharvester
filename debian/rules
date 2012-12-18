@@ -12,6 +12,6 @@
 %:
 	dh $@ 
 override_dh_auto_install:
-	install myparser.py debian/theharvester/usr/bin/myparser
-	install theHarvester.py debian/theharvester/usr/bin/theHarvester
+	install myparser.py $(CURDIR)debian/theharvester/usr/bin/myparser
+	install theHarvester.py $(CURDIR)debian/theharvester/usr/bin/theHarvester
 
