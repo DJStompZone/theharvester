@@ -1,10 +1,10 @@
-theharvester (2.2-kali2) kali; urgency=low
+theharvester (2.2-1kali2) kali; urgency=low
 
   * Removed desktop file
 
  -- balding_parrot <balding_parrot@kali.org>  Tue, 18 Dec 2012 22:32:47 +0000
 
-theharvester (2.2-kali1) kali; urgency=low
+theharvester (2.2-1kali1) kali; urgency=low
 
   * Initial release 
 
