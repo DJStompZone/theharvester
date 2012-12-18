@@ -1,0 +1,4 @@
+debian/*.desktop usr/share/applications/
+discovery usr/share/theharvester/
+lib usr/share/theharvester/
+

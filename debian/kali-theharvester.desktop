@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=theHarvester
+Encoding=UTF-8
+Exec=sh -c "python theHarvester;sudo -s"
+Icon=kali-menu.png
+StartupNotify=false
+Terminal=true
+Type=Application
+Categories=01-07-osint-analysis.directory;
+
