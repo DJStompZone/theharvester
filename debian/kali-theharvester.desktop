@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=theHarvester
 Encoding=UTF-8
-Exec=sh -c "python theHarvester.py;sudo -s"
+Exec=sh -c "python theHarvester;sudo -s"
 Icon=kali-menu.png
 StartupNotify=false
 Terminal=true
