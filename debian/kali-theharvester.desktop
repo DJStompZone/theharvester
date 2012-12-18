@@ -6,5 +6,5 @@ Icon=kali-menu.png
 StartupNotify=false
 Terminal=true
 Type=Application
-Categories=01-07-osint-analysis.directory;
+Categories=01-07-osint-analysis;
 
