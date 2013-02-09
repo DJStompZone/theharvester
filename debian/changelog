@@ -1,3 +1,9 @@
+theharvester (2.2a-1kali0) UNRELEASED; urgency=low
+
+  * New upstream version
+
+ -- balding_parrot <balding_parrot@kali.org>  Sat, 09 Feb 2013 14:47:29 -0700
+
 theharvester (2.2-1kali3) kali; urgency=low
 
   * Cleaned up debian files

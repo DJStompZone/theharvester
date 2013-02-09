@@ -12,5 +12,5 @@
 %:
 	dh $@ 
 override_dh_auto_install:
-	install theHarvester.py $(CURDIR)/debian/theharvester/usr/bin/theHarvester
+	install theHarvester.py $(CURDIR)/debian/theharvester/usr/bin/theharvester
 
