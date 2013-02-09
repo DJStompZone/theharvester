@@ -1,5 +1,5 @@
 *********************************
-*theHarvester 2.2               *
+*theHarvester 2.2a              *
 *Coded by Christian Martorella  *
 *cmartorella@edge-security.com  *
 *********************************
@@ -41,6 +41,11 @@ Active:
 Dependencies:
 ------------
 none
+
+Changelog 2.2a:
+---------------
+-Fixed Linkedin parser (thanks Alton Johnson and Francesco Stillavato)
+-New banner with superpowers
 
 Changelogin 2.2:
 ----------------
@@ -86,5 +91,5 @@ http://code.google.com/p/theharvester/
 Thanks:
 -------
 John Matherly -  SHODAN project
-
+Lee Baird for suggestions and bugs reporting
 
