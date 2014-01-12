@@ -1,0 +1,3 @@
+version=3
+
+https://code.google.com/p/theharvester/downloads/list .*/theHarvester-(.*)\.tar\.gz

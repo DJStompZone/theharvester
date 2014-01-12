@@ -1,3 +1,9 @@
+theharvester (2.2a-1kali1) kali; urgency=low
+
+  * Updated watch file
+
+ -- Mati Aharoni <muts@kali.org>  Sun, 12 Jan 2014 15:40:59 -0500
+
 theharvester (2.2a-1kali0) kali; urgency=low
 
   * New upstream version
