@@ -1,0 +1,16 @@
+Patched to use the proper binary name in the usage output.
+--- a/theHarvester.py
++++ b/theHarvester.py
+@@ -38,9 +38,9 @@ def usage():
+  print "       -l: Limit the number of results to work with(bing goes from 50 to 50 results,"
+  print "	   -h: use SHODAN database to query discovered hosts"
+  print "            google 100 to 100, and pgp doesn't use this option)"
+- print "\nExamples:./theharvester.py -d microsoft.com -l 500 -b google"
+- print "         ./theharvester.py -d microsoft.com -b pgp"
+- print "         ./theharvester.py -d microsoft -l 200 -b linkedin\n"
++ print "\nExamples: theharvester -d microsoft.com -l 500 -b google"
++ print "            theharvester -d microsoft.com -b pgp"
++ print "            theharvester -d microsoft -l 200 -b linkedin\n"
+ 
+ 
+ def start(argv):

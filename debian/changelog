@@ -1,3 +1,9 @@
+theharvester (2.2a-1kali2) kali; urgency=low
+
+  * Patched usage output (Closes: 0001251)
+
+ -- Devon Kearns <dookie@kali.org>  Tue, 20 May 2014 10:49:13 -0600
+
 theharvester (2.2a-1kali1) kali; urgency=low
 
   * Updated watch file
