@@ -10,24 +10,27 @@
 import Base
 import string
 
+
 def revlookup(name):
     "convenience routine for doing a reverse lookup of an address"
-    if Base.defaults['server'] == []: Base.DiscoverNameServers()
+    if Base.defaults['server'] == []:
+        Base.DiscoverNameServers()
     a = string.split(name, '.')
     a.reverse()
-    b = string.join(a, '.')+'.in-addr.arpa'
+    b = string.join(a, '.') + '.in-addr.arpa'
     # this will only return one of any records returned.
-    return Base.DnsRequest(b, qtype = 'ptr').req().answers[0]['data']
+    return Base.DnsRequest(b, qtype='ptr').req().answers[0]['data']
+
 
 def mxlookup(name):
     """
     convenience routine for doing an MX lookup of a name. returns a
     sorted list of (preference, mail exchanger) records
     """
-    if Base.defaults['server'] == []: Base.DiscoverNameServers()
-    a = Base.DnsRequest(name, qtype = 'mx').req().answers
-    l = map(lambda x:x['data'], a)
-    l.sort()
+    if Base.defaults['server'] == []:
+        Base.DiscoverNameServers()
+    a = Base.DnsRequest(name, qtype='mx').req().answers
+    l = sorted(map(lambda x: x['data'], a))
     return l
 
 #

@@ -10,7 +10,6 @@
 """
 
 
-
 QUERY = 0
 IQUERY = 1
 STATUS = 2
@@ -22,11 +21,15 @@ UPDATE = 5
 _names = dir()
 opcodemap = {}
 for _name in _names:
-    if _name[0] != '_': opcodemap[eval(_name)] = _name
+    if _name[0] != '_':
+        opcodemap[eval(_name)] = _name
+
 
 def opcodestr(opcode):
-    if opcodemap.has_key(opcode): return opcodemap[opcode]
-    else: return `opcode`
+    if opcode in opcodemap:
+        return opcodemap[opcode]
+    else:
+        return repr(opcode)
 
 #
 # $Log: Opcode.py,v $
