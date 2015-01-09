@@ -1,7 +1,7 @@
 Source: theharvester
 Section: utils
 Priority: extra
-Maintainer: balding_parrot <balding_parrot@kali.org>
+Maintainer: Devon Kearns <dookie@kali.org>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.3
 Homepage: https://code.google.com/p/theharvester/
@@ -10,6 +10,6 @@ Homepage: https://code.google.com/p/theharvester/
 
 Package: theharvester
 Architecture: all
-Depends: ${misc:Depends}, python
+Depends: ${misc:Depends}, python, python-requests
 Description: theHarvester is a tool for gathering e-mail accounts and subdomain names from public sources.
  theHarvester is a tool for gathering e-mail accounts and subdomain names from different public sources.

@@ -1,3 +1,9 @@
+theharvester (2.5+git20150109-0kali0) kali; urgency=medium
+
+  * Imported new upstream release (Closes: 0001961)
+
+ -- Devon Kearns <dookie@kali.org>  Fri, 09 Jan 2015 12:24:36 -0700
+
 theharvester (2.2a-1kali2) kali; urgency=low
 
   * Patched usage output (Closes: 0001251)
