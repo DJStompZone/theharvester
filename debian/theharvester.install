@@ -1,5 +1,4 @@
 discovery usr/share/theharvester/
 lib usr/share/theharvester/
-myparser.py usr/share/theharvester/
-htmlExport.py usr/share/theharvester/
-processor.py usr/share/theharvester/
+*.py usr/share/theharvester/
+tests usr/share/theharvester/
