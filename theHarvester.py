@@ -3,6 +3,7 @@
 import string
 import httplib
 import sys
+import os
 from socket import *
 import re
 import getopt
@@ -17,31 +18,31 @@ print "* | __| '_ \ / _ \  / /_/ / _` | '__\ \ / / _ \/ __| __/ _ \ '__| *"
 print "* | |_| | | |  __/ / __  / (_| | |   \ V /  __/\__ \ ||  __/ |    *"
 print "*  \__|_| |_|\___| \/ /_/ \__,_|_|    \_/ \___||___/\__\___|_|    *"
 print "*                                                                 *"
-print "* TheHarvester Ver. 2.5                                           *"
+print "* TheHarvester Ver. 2.6                                           *"
 print "* Coded by Christian Martorella                                   *"
 print "* Edge-Security Research                                          *"
 print "* cmartorella@edge-security.com                                   *"
 print "*******************************************************************\n\n"
 
+try:
+    import requests
+except:
+    print "Request library not found, please install it before proceeding\n"
+    sys.exit()
 
 def usage():
 
+    comm = os.path.basename(sys.argv[0])
+
+    if os.path.dirname(sys.argv[0]) == os.getcwd():
+        comm = "./" + comm
+
     print "Usage: theharvester options \n"
     print "       -d: Domain to search or company name"
-    print """       -b: data source:
-                        google
-                        googleCSE
-                        bing
-                        bingapi
-                        pgp
-                        linkedin
-                        google-profiles
-                        people123
-                        jigsaw
-                        twitter
-                        googleplus
-                        all\n"""
-    print "       -s: Start in result number X (default 0)"
+    print """       -b: data source: google, googleCSE, bing, bingapi, pgp
+                        linkedin, google-profiles, people123, jigsaw, 
+                        twitter, googleplus, all\n"""
+    print "       -s: Start in result number X (default: 0)"
     print "       -v: Verify host name via dns resolution and search for virtual hosts"
     print "       -f: Save the results into an HTML and XML file"
     print "       -n: Perform a DNS reverse query on all ranges discovered"
@@ -52,10 +53,10 @@ def usage():
     print "       -h: use SHODAN database to query discovered hosts"
     print "            google 100 to 100, and pgp doesn't use this option)"
     print "\nExamples:"
-    print "         ./theharvester.py -d microsoft.com -l 500 -b google"
-    print "         ./theharvester.py -d microsoft.com -b pgp"
-    print "         ./theharvester.py -d microsoft -l 200 -b linkedin"
-    print "         ./theHarvester.py -d apple.com -b googleCSE -l 500 -s 300\n"
+    print "        " + comm + " -d microsoft.com -l 500 -b google"
+    print "        " + comm + " -d microsoft.com -b pgp"
+    print "        " + comm + " -d microsoft -l 200 -b linkedin"
+    print "        " + comm + " -d apple.com -b googleCSE -l 500 -s 300\n"
 
 def start(argv):
     if len(sys.argv) < 4:
@@ -101,10 +102,10 @@ def start(argv):
             dnstld = True
         elif opt == '-b':
             engine = arg
-            if engine not in ("google","googleCSE" , "linkedin", "pgp", "all", "google-profiles", "bing", "bing_api", 
-                              "yandex", "people123", "jigsaw", "dogpilesearch","twitter","googleplus"):
+            if engine not in ("google","googleCSE" , "linkedin", "pgp", "all", "google-profiles", "bing", "bingapi", 
+                              "yandex", "people123", "jigsaw", "dogpilesearch", "twitter", "googleplus", "yahoo", "baidu"):
                 usage()
-                print "Invalid search engine, try with: bing, google, linkedin, pgp, jigsaw, bing_api, people123, google-profiles,dogpilesearch,twitter,googleplus"
+                print "Invalid search engine, try with: bing, google, linkedin, pgp, jigsaw, bingapi, people123, google-profiles, dogpilesearch, twitter, googleplus, yahoo, baidu"
                 sys.exit()
             else:
                 pass
@@ -177,9 +178,24 @@ def start(argv):
         for user in people:
             print user
         sys.exit()
+
     elif engine == "dogpilesearch":
         print "[-] Searching in Dogpilesearch.."
         search = dogpilesearch.search_dogpile(word, limit)
+        search.process()
+        all_emails = search.get_emails()
+        all_hosts = search.get_hostnames()
+
+    elif engine == "yahoo":
+        print "[-] Searching in Yahoo.."
+        search = yahoosearch.search_yahoo(word, limit)
+        search.process()
+        all_emails = search.get_emails()
+        all_hosts = search.get_hostnames()
+
+    elif engine == "baidu":
+        print "[-] Searching in Baidu.."
+        search = baidusearch.search_baidu(word, limit)
         search.process()
         all_emails = search.get_emails()
         all_hosts = search.get_hostnames()

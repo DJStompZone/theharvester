@@ -1,3 +1,15 @@
+
+Changelog in 2.6:
+-----------------
+usage() improvement, CameronNemo.
+Added Yahoo and Baidu search engines. Thanks to Tatanus
+Added check for the existence of Requests library.
+Fixed email regex to provide cleaner results. Thanks to Peter McAlpine
+
+Changelog in 2.5:
+-----------------
+
+
 Changelog in 2.4:
 ------------------
 -Fixed Linkedin Parser
