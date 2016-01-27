@@ -1,3 +1,9 @@
+theharvester (2.6-0kali1) kali-dev; urgency=medium
+
+  * Update watch file
+
+ -- Sophie Brun <sophie@freexian.com>  Wed, 27 Jan 2016 10:26:13 +0100
+
 theharvester (2.6-0kali0) kali; urgency=low
 
   * Imported new upstream release (Closes: 0002291)

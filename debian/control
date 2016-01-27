@@ -4,12 +4,13 @@ Priority: extra
 Maintainer: Devon Kearns <dookie@kali.org>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.3
-Homepage: https://code.google.com/p/theharvester/
-#Vcs-Git: ssh://git@git.kali.org/packages/theharvester.git
-#Vcs-Browser: http://git.kali.org/gitweb/?p=packages/theharvester.git;a=summary
+Homepage: https://github.com/laramies/theHarvester
+Vcs-Git: git://git.kali.org/packages/theharvester.git
+Vcs-Browser: http://git.kali.org/gitweb/?p=packages/theharvester.git;a=summary
 
 Package: theharvester
 Architecture: all
 Depends: ${misc:Depends}, python, python-requests
-Description: theHarvester is a tool for gathering e-mail accounts and subdomain names from public sources.
- theHarvester is a tool for gathering e-mail accounts and subdomain names from different public sources.
+Description: tool for gathering e-mail accounts and subdomain names from public sources
+ The package contains a tool for gathering e-mail accounts and subdomain names
+ from different public sources.
