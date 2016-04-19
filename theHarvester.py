@@ -7,6 +7,13 @@ import os
 from socket import *
 import re
 import getopt
+
+try:
+    import requests
+except:
+    print "Request library not found, please install it before proceeding\n"
+    sys.exit()
+
 from discovery import *
 from lib import htmlExport
 from lib import hostchecker
@@ -18,17 +25,12 @@ print "* | __| '_ \ / _ \  / /_/ / _` | '__\ \ / / _ \/ __| __/ _ \ '__| *"
 print "* | |_| | | |  __/ / __  / (_| | |   \ V /  __/\__ \ ||  __/ |    *"
 print "*  \__|_| |_|\___| \/ /_/ \__,_|_|    \_/ \___||___/\__\___|_|    *"
 print "*                                                                 *"
-print "* TheHarvester Ver. 2.6                                           *"
+print "* TheHarvester Ver. 2.7                                           *"
 print "* Coded by Christian Martorella                                   *"
 print "* Edge-Security Research                                          *"
 print "* cmartorella@edge-security.com                                   *"
 print "*******************************************************************\n\n"
 
-try:
-    import requests
-except:
-    print "Request library not found, please install it before proceeding\n"
-    sys.exit()
 
 def usage():
 
@@ -39,24 +41,24 @@ def usage():
 
     print "Usage: theharvester options \n"
     print "       -d: Domain to search or company name"
-    print """       -b: data source: google, googleCSE, bing, bingapi, pgp
-                        linkedin, google-profiles, people123, jigsaw, 
-                        twitter, googleplus, all\n"""
+    print """       -b: data source: google, googleCSE, bing, bingapi, pgp, linkedin,
+                        google-profiles, jigsaw, twitter, googleplus, all\n"""
     print "       -s: Start in result number X (default: 0)"
     print "       -v: Verify host name via dns resolution and search for virtual hosts"
-    print "       -f: Save the results into an HTML and XML file"
+    print "       -f: Save the results into an HTML and XML file (both)"
     print "       -n: Perform a DNS reverse query on all ranges discovered"
     print "       -c: Perform a DNS brute force for the domain name"
     print "       -t: Perform a DNS TLD expansion discovery"
     print "       -e: Use this DNS server"
     print "       -l: Limit the number of results to work with(bing goes from 50 to 50 results,"
-    print "       -h: use SHODAN database to query discovered hosts"
     print "            google 100 to 100, and pgp doesn't use this option)"
+    print "       -h: use SHODAN database to query discovered hosts"
     print "\nExamples:"
-    print "        " + comm + " -d microsoft.com -l 500 -b google"
+    print "        " + comm + " -d microsoft.com -l 500 -b google -h myresults.html"
     print "        " + comm + " -d microsoft.com -b pgp"
     print "        " + comm + " -d microsoft -l 200 -b linkedin"
     print "        " + comm + " -d apple.com -b googleCSE -l 500 -s 300\n"
+
 
 def start(argv):
     if len(sys.argv) < 4:
@@ -102,10 +104,10 @@ def start(argv):
             dnstld = True
         elif opt == '-b':
             engine = arg
-            if engine not in ("google","googleCSE" , "linkedin", "pgp", "all", "google-profiles", "bing", "bingapi", 
-                              "yandex", "people123", "jigsaw", "dogpilesearch", "twitter", "googleplus", "yahoo", "baidu"):
+            if engine not in ("google","googleCSE" , "linkedin", "pgp", "all", "google-profiles", "bing", "bingapi",
+                              "yandex", "jigsaw", "dogpilesearch", "twitter", "googleplus", "yahoo", "baidu"):
                 usage()
-                print "Invalid search engine, try with: bing, google, linkedin, pgp, jigsaw, bingapi, people123, google-profiles, dogpilesearch, twitter, googleplus, yahoo, baidu"
+                print "Invalid search engine, try with: bing, google, linkedin, pgp, jigsaw, bingapi, google-profiles, dogpilesearch, twitter, googleplus, yahoo, baidu"
                 sys.exit()
             else:
                 pass
@@ -115,7 +117,6 @@ def start(argv):
         search.process()
         all_emails = search.get_emails()
         all_hosts = search.get_hostnames()
-
 
     if engine == "googleCSE":
         print "[-] Searching in Google Custom Search:"
@@ -156,17 +157,6 @@ def start(argv):
         search.process()
         all_emails = search.get_emails()
         all_hosts = search.get_hostnames()
-
-    elif engine == "people123":
-        print "[-] Searching in 123People.."
-        search = people123.search_123people(word, limit)
-        search.process()
-        people = search.get_people()
-        all_emails = search.get_emails()
-        print "Users from 123People:"
-        print "====================="
-        for user in people:
-            print user
 
     elif engine == "jigsaw":
         print "[-] Searching in Jigsaw.."
@@ -210,7 +200,7 @@ def start(argv):
        	for user in people:
             print user
         sys.exit()
- 
+
     elif engine == "twitter":
         print "[-] Searching in Twitter .."
         search = twittersearch.search_twitter(word, limit)
@@ -221,7 +211,7 @@ def start(argv):
        	for user in people:
             print user
         sys.exit()
-    
+
     elif engine == "linkedin":
         print "[-] Searching in Linkedin.."
         search = linkedinsearch.search_linkedin(word, limit)
@@ -276,20 +266,23 @@ def start(argv):
         hosts = search.get_hostnames()
         all_hosts.extend(hosts)
         all_emails.extend(emails)
+
+        #Clean up email list, sort and uniq
+        all_emails=sorted(set(all_emails))
     #Results############################################################
     print "\n\n[+] Emails found:"
     print "------------------"
     if all_emails == []:
         print "No emails found"
     else:
-        for emails in all_emails:
-            print emails
+        print "\n".join(all_emails)
 
     print "\n[+] Hosts found in search engines:"
     print "------------------------------------"
     if all_hosts == []:
         print "No hosts found"
     else:
+        all_hosts=sorted(set(all_hosts))
         print "[-] Resolving hostnames IPs... "
         full_host = hostchecker.Checker(all_hosts)
         full = full_host.check()
@@ -363,9 +356,13 @@ def start(argv):
             search.process_vhost()
             res = search.get_allhostnames()
             for x in res:
+                x = re.sub(r'[[\<\/?]*[\w]*>]*','',x)
+                x = re.sub('<','',x)
+                x = re.sub('>','',x)
                 print l + "\t" + x
                 vhost.append(l + ":" + x)
                 full.append(l + ":" + x)
+        vhost=sorted(set(vhost))
     else:
         pass
     shodanres = []
@@ -409,6 +406,7 @@ def start(argv):
     else:
         pass
 
+    #Reporting#######################################################
     if filename != "":
         try:
             print "[+] Saving files..."
@@ -432,12 +430,54 @@ def start(argv):
             file.write('<?xml version="1.0" encoding="UTF-8"?><theHarvester>')
             for x in all_emails:
                 file.write('<email>' + x + '</email>')
-            for x in all_hosts:
-                file.write('<host>' + x + '</host>')
+
+            for x in full:
+                x = x.split(":")
+                if len(x) == 2:
+                    file.write('<host>' + '<ip>' + x[0] + '</ip><hostname>' + x[1]  + '</hostname>' + '</host>')
+                else:
+                    file.write('<host>' + x + '</host>')
             for x in vhost:
-                file.write('<vhost>' + x + '</vhost>')
+                x = x.split(":")
+                if len(x) == 2:
+                    file.write('<vhost>' + '<ip>' + x[0] + '</ip><hostname>' + x[1]  + '</hostname>' + '</vhost>')
+                else:
+                    file.write('<vhost>' + x + '</vhost>')
+
+            if shodanres != []:
+                shodanalysis = []
+                for x in shodanres:
+                    res = x.split("SAPO")
+                    # print " res[0] " + res[0] # ip/host
+                    # print " res[1] " + res[1] # banner/info
+                    # print " res[2] " + res[2] # port
+                    file.write('<shodan>')
+                    #page.h3(res[0])
+                    file.write('<host>' + res[0] + '</host>')
+                    #page.a("Port :" + res[2])
+                    file.write('<port>' + res[2] + '</port>')
+                    #page.pre(res[1])
+                    file.write('<banner><!--' + res[1] + '--></banner>')
+                    
+                    
+                    reg_server = re.compile('Server:.*')
+                    temp = reg_server.findall(res[1])
+                    if temp != []:
+                        shodanalysis.append(res[0] + ":" + temp[0])
+                    
+                    file.write('</shodan>')
+                if shodanalysis != []:
+                    shodanalysis=sorted(set(shodanalysis))
+                    file.write('<servers>')
+                    for x in shodanalysis:
+                        #page.pre(x)
+                        file.write('<server>' + x + '</server>')
+                    file.write('</servers>')
+                    
+
             file.write('</theHarvester>')
-            file.close
+            file.flush()
+            file.close()
             print "Files saved!"
         except Exception as er:
             print "Error saving XML file: " + er

@@ -18,6 +18,9 @@ class parser:
         self.results = re.sub('%3a', ' ', self.results)
         self.results = re.sub('<strong>', '', self.results)
         self.results = re.sub('</strong>', '', self.results)
+        self.results = re.sub('<wbr>','',self.results)
+        self.results = re.sub('</wbr>','',self.results)
+
 
         for e in ('>', ':', '=', '<', '/', '\\', ';', '&', '%3A', '%3D', '%3C'):
             self.results = string.replace(self.results, e, ' ')
@@ -27,15 +30,18 @@ class parser:
         self.results = re.sub('</em>', '', self.results)
         self.results = re.sub('%2f', ' ', self.results)
         self.results = re.sub('%3a', ' ', self.results)
+
         for e in ('<', '>', ':', '=', ';', '&', '%3A', '%3D', '%3C'):
             self.results = string.replace(self.results, e, ' ')
 
     def emails(self):
         self.genericClean()
         reg_emails = re.compile(
-            '[a-zA-Z0-9.-_]*' +
+            # Local part is required, charset is flexible
+           # https://tools.ietf.org/html/rfc6531 (removed * and () as they provide FP mostly )
+            '[a-zA-Z0-9.\-_+#~!$&\',;=:]+' +
             '@' +
-            '(?:[a-zA-Z0-9.-]*\.)?' +
+            '[a-zA-Z0-9.-]*' +
             self.word)
         self.temp = reg_emails.findall(self.results)
         emails = self.unique()
@@ -114,20 +120,6 @@ class parser:
             if y != " ":
                 resul.append(y)
         return resul
-
-    def people_123people(self):
-        #reg_people = re.compile('www\.123people\.com/s/[a-zA-Z0-9.-_]*\+[a-zA-Z0-9.-_]*\+?[a-zA-Z0-9.-_]*\"')
-        reg_people = re.compile('www.123people.com/e/[a-zA-Z0-9.-_+]*</cite>')
-        self.temp = reg_people.findall(self.results)
-        self.temp2 = []
-        for x in self.temp:
-            y = x.replace("www.123people.com/e/", "")
-            y = y.replace('"', '')
-            y = y.replace('+', ' ')
-            y = y.replace('</cite>', '')
-
-            self.temp2.append(y)
-        return self.temp2
 
     def people_jigsaw(self):
         res = []
