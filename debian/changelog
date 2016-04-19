@@ -1,3 +1,9 @@
+theharvester (2.7-0kali1) kali-dev; urgency=medium
+
+  * Import new upstream release
+
+ -- Sophie Brun <sophie@freexian.com>  Tue, 19 Apr 2016 09:32:54 +0200
+
 theharvester (2.6-0kali1) kali-dev; urgency=medium
 
   * Update watch file
