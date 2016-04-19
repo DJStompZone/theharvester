@@ -1,1 +1,3 @@
-.pc
+*.pyc
+*.idea
+tests/myparser.py
