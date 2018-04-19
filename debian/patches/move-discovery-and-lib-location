@@ -4,11 +4,12 @@ under /usr/share/theharvester/
 
 --- a/theHarvester.py
 +++ b/theHarvester.py
-@@ -7,6 +7,7 @@ import os
+@@ -7,6 +7,8 @@ import os
  from socket import *
  import re
  import getopt
++
 +sys.path.append("/usr/share/theharvester/")
+ import stash
  
  try:
-     import requests
