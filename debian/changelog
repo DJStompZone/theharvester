@@ -1,3 +1,13 @@
+theharvester (2.7.2~20180322-0kali1) kali-dev; urgency=medium
+
+  * Import new upstream version (Closes: 0004685)
+  * Bump Standards-Version and use debhelper 11
+  * Update debian/control and debian/theharvester.install
+  * Refresh patches
+  * Add wfuzz as dependency
+
+ -- Sophie Brun <sophie@freexian.com>  Thu, 19 Apr 2018 09:11:32 +0200
+
 theharvester (2.7-0kali1) kali-dev; urgency=medium
 
   * Import new upstream release
