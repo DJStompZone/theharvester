@@ -1,4 +1,3 @@
-discovery usr/share/theharvester/
-lib usr/share/theharvester/
+discovery lib wordlist usr/share/theharvester/
 *.py usr/share/theharvester/
-tests usr/share/theharvester/
+dns-names.txt usr/share/theharvester/
