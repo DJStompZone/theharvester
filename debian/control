@@ -1,9 +1,10 @@
 Source: theharvester
 Section: utils
-Priority: extra
-Maintainer: Devon Kearns <dookie@kali.org>
-Build-Depends: debhelper (>= 9)
-Standards-Version: 3.9.7
+Priority: optional
+Maintainer: Kali Developers <devel@kali.org>
+Uploaders: Devon Kearns <dookie@kali.org>
+Build-Depends: debhelper (>= 11)
+Standards-Version: 4.1.4
 Homepage: https://github.com/laramies/theHarvester
 Vcs-Git: git://git.kali.org/packages/theharvester.git
 Vcs-Browser: http://git.kali.org/gitweb/?p=packages/theharvester.git;a=summary
