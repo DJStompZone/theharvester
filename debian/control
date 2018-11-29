@@ -11,7 +11,7 @@ Vcs-Browser: http://git.kali.org/gitweb/?p=packages/theharvester.git;a=summary
 
 Package: theharvester
 Architecture: all
-Depends: ${misc:Depends}, python, python-requests, wfuzz
+Depends: ${misc:Depends}, python, python-requests, wfuzz, python-bs4
 Description: tool for gathering e-mail accounts and subdomain names from public sources
  The package contains a tool for gathering subdomain names, e-mail addresses,
  virtual hosts, open ports/ banners, and employee names from different public
