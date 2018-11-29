@@ -3,7 +3,7 @@ Upstream-Name: theharvester
 Source: https://github.com/laramies/theHarvester
 
 Files: *
-Copyright: Christian Martorella  <cmartorella@edge-security.com >
+Copyright: 2011 Christian Martorella  <cmartorella@edge-security.com >
 License: GPL-2
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License version 2 as published by
@@ -22,6 +22,7 @@ License: GPL-2
  
 Files: debian/*
 Copyright: 2012 balding_parrot <baldingparrot@localhost.localdomain>
+           2018 Sophie Brun <sophie@offensive-security.com>
 License: GPL-2+
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
