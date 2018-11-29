@@ -4,12 +4,12 @@ under /usr/share/theharvester/
 
 --- a/theHarvester.py
 +++ b/theHarvester.py
-@@ -7,6 +7,8 @@ import os
- from socket import *
+@@ -4,6 +4,8 @@ import sys
+ import os
  import re
  import getopt
 +
 +sys.path.append("/usr/share/theharvester/")
  import stash
+ import time
  
- try:
