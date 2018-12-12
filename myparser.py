@@ -1,4 +1,3 @@
-import string
 import re
 
 
@@ -138,6 +137,16 @@ class parser:
         self.temp = reg_hosts.findall(self.results)
         hostnames = self.unique()
         return hostnames
+
+    def urls(self):
+        #self.genericClean()
+        #reg_hosts = re.compile("https://"+ self.word +'*[a-zA-Z0-9.-:/]')
+        #reg_urls = re.compile('https://trello.com'+'[a-zA-Z0-9]+')
+        found = re.finditer('https://(www\.)?trello.com/([a-zA-Z0-9\-_\.]+/?)*', self.results)
+        for x in found:
+            self.temp.append(x.group())        
+        urls = self.unique()
+        return urls
 
     def set(self):
         reg_sets = re.compile('>[a-zA-Z0-9]*</a></font>')

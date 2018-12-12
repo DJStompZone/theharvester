@@ -21,4 +21,6 @@ __all__ = ["bingsearch",
            "port_scanner",
            "takeover",
            "googlecertificates",
-           "googleCSE"]
+           "googleCSE",
+           "censys",
+           "trello"]
