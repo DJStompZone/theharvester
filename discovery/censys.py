@@ -29,22 +29,27 @@ class search_censys:
             headers = {'user-agent': random.choice(self.userAgent),'Accept':'*/*','Referer':self.url}
             response = requests.get(self.url, headers=headers)
             self.results = response.content
+            print ('-')
             self.total_results += self.results
+            print ('-')
         except Exception as e:
             print(e)
 
-    def process(self,morepage=None):
-        try:
-            if (morepage is not None):
-                self.page =str(morepage) 
-                baseurl = self.url
-                self.url = baseurl + "&page=" + self.page
-            else:
-                self.url="https://" + self.server + "/ipv4/_search?q=" + self.word
-            self.do_search()
-            print("\tSearching Censys results..")
-        except Exception as e:
-            print("Error occurred: " + str(e))
+    def process(self):
+        self.url="https://" + self.server + "/ipv4/_search?q=" + str(self.word) + "&page=1"
+        self.do_search()
+        self.counter=2
+        pages = censysparser.parser(self)
+        totalpages = pages.search_numberofpages()
+        while self.counter <= totalpages:
+            try:
+                self.page =str(self.counter)
+                self.url="https://" + self.server + "/ipv4/_search?q=" + str(self.word) + "&page=" + str(self.page)                   
+                print("\tSearching Censys results page " + self.page + "...")
+                self.do_search()
+            except Exception as e:
+                print("Error occurred: " + str(e))
+            self.counter+=1
 
     def get_hostnames(self):
         try:
@@ -57,13 +62,6 @@ class search_censys:
         try:
             ips = censysparser.parser(self)
             return ips.search_ipaddresses()
-        except Exception as e:
-            print("Error occurred: " + str(e))
-    
-    def get_totalnumberofpages(self):
-        try:
-            pages = censysparser.parser(self)
-            return pages.search_numberofpages()
         except Exception as e:
             print("Error occurred: " + str(e))
 
