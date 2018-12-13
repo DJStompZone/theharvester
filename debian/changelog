@@ -1,3 +1,12 @@
+theharvester (3.0.4-0kali1) kali-dev; urgency=medium
+
+  * New upstream version 3.0.4
+  * Switch to Python 3
+  * Add a minimal required version of wfuzz: this is the first version in
+    Python 3
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 13 Dec 2018 11:11:59 +0100
+
 theharvester (3.0.1-0kali1) kali-dev; urgency=medium
 
   * New upstream version 3.0.1
