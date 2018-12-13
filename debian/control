@@ -2,7 +2,8 @@ Source: theharvester
 Section: utils
 Priority: optional
 Maintainer: Kali Developers <devel@kali.org>
-Uploaders: Devon Kearns <dookie@kali.org>, Ben Wilson <g0tmi1k@offensive-security.com>
+Uploaders: Devon Kearns <dookie@kali.org>,
+           Ben Wilson <g0tmi1k@offensive-security.com>
 Build-Depends: debhelper (>= 11)
 Standards-Version: 4.2.1
 Homepage: https://github.com/laramies/theHarvester
@@ -11,7 +12,11 @@ Vcs-Browser: http://git.kali.org/gitweb/?p=packages/theharvester.git;a=summary
 
 Package: theharvester
 Architecture: all
-Depends: ${misc:Depends}, python, python-requests, wfuzz, python-bs4
+Depends: python3,
+         python3-bs4,
+         python3-requests,
+         wfuzz (>= 2.3.1-2),
+         ${misc:Depends}
 Description: tool for gathering e-mail accounts and subdomain names from public sources
  The package contains a tool for gathering subdomain names, e-mail addresses,
  virtual hosts, open ports/ banners, and employee names from different public
