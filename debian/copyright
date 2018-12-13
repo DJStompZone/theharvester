@@ -19,7 +19,7 @@ License: GPL-2
  .
  On Debian systems, the complete text of the GNU General
  Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
- 
+
 Files: debian/*
 Copyright: 2012 balding_parrot <baldingparrot@localhost.localdomain>
            2018 Sophie Brun <sophie@offensive-security.com>

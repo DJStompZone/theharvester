@@ -1,2 +1,2 @@
-discovery lib wordlists usr/share/theharvester/
 *.py usr/share/theharvester/
+discovery lib wordlists usr/share/theharvester/
