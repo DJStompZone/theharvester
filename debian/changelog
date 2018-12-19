@@ -1,3 +1,12 @@
+theharvester (3.0.5-0kali1) kali-dev; urgency=medium
+
+  * New upstream version 3.0.5
+  * Add dependency: python3-plotly
+  * Refresh patch
+  * Add minimal autopkgtest
+
+ -- Sophie Brun <sophie@offensive-security.com>  Wed, 19 Dec 2018 11:00:29 +0100
+
 theharvester (3.0.4-0kali1) kali-dev; urgency=medium
 
   * New upstream version 3.0.4
