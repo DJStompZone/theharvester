@@ -1,7 +1,9 @@
-FROM python:2-alpine
+FROM kalilinux/kali-linux-docker
 RUN mkdir /app
-RUN pip install requests beautifulsoup4
 WORKDIR /app
 COPY . /app
+RUN apt-get -qq update
+RUN apt-get install -yqq python3-pip
+RUN pip3 install -r requirements.txt
 RUN chmod +x *.py
- ENTRYPOINT ["/app/theHarvester.py"]
+ENTRYPOINT ["/app/theHarvester.py"]
