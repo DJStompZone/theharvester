@@ -1,3 +1,9 @@
+theharvester (3.1-0kali2) kali-dev; urgency=medium
+
+  * Add missing depends: python3-dnspython
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 15 Oct 2019 18:20:09 +0200
+
 theharvester (3.1-0kali1) kali-dev; urgency=medium
 
   [ Raphaël Hertzog ]
