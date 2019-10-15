@@ -1,114 +1,111 @@
-```
-*******************************************************************
-*                                                                 *
-* | |_| |__   ___    /\  /\__ _ _ ____   _____  ___| |_ ___ _ __  *
-* | __| '_ \ / _ \  / /_/ / _` | '__\ \ / / _ \/ __| __/ _ \ '__| *
-* | |_| | | |  __/ / __  / (_| | |   \ V /  __/\__ \ ||  __/ |    *
-*  \__|_| |_|\___| \/ /_/ \__,_|_|    \_/ \___||___/\__\___|_|    *
-*                                                                 *
-* TheHarvester Ver. 3.0.5                                         *
-* Coded by Christian Martorella                                   *
-* Edge-Security Research                                          *
-* cmartorella@edge-security.com                                   *
-*******************************************************************
-```
+![theHarvester](https://github.com/laramies/theHarvester/blob/master/theHarvester-logo.png)
+
+[![Build Status](https://travis-ci.com/laramies/theHarvester.svg?branch=master)](https://travis-ci.com/laramies/theHarvester) [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/laramies/theHarvester.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/laramies/theHarvester/context:python)
+[![Rawsec's CyberSecurity Inventory](https://inventory.rawsec.ml/img/badges/Rawsec-inventoried-FF5050_flat_without_logo.svg)](https://inventory.rawsec.ml/)
 
 What is this?
 -------------
+theHarvester is a very simple, yet effective tool designed to be used in the early<br>
+stages of a penetration test. Use it for open source intelligence gathering and<br>
+helping to determine a company's external threat landscape on the internet. The<br>
+tool gathers emails, names, subdomains, IPs, and URLs using multiple public data<br>
+sources that include:
 
-theHarvester is a tool for gathering subdomain names, e-mail addresses, virtual
-hosts, open ports/ banners, and employee names from different public sources
-(search engines, pgp key servers).
+Passive:
+--------
+* baidu: Baidu search engine - www.baidu.com
 
-Is a really simple tool, but very effective for the early stages of a penetration
-test or just to know the visibility of your company in the Internet.
+* bing: Microsoft search engine - www.bing.com
 
-The sources are:
+* bingapi: Microsoft search engine, through the API (Requires API key, see below.)
 
-**Passive**:
----------
-
-* threatcrowd: Open source threat intelligence - https://www.threatcrowd.org/
+* CertSporter: Cert Spotter monitors Certificate Transparency logs - https://sslmate.com/certspotter/
 
 * crtsh: Comodo Certificate search - www.crt.sh
 
-* google: Google search engine  - www.google.com (With optional google dorking)
-
-* googleCSE: Google custom search engine
-
-* google-profiles: Google search engine, specific search for Google profiles
-
-* bing: Microsoft search engine  - www.bing.com
-
-* bingapi: microsoft search engine, through the API (you need to add your Key in
-          the discovery/bingsearch.py file)
+* dnsdumpster: DNSdumpster search engine - dnsdumpster.com
 
 * dogpile: Dogpile search engine - www.dogpile.com
 
-* pgp: PGP key server - mit.edu
+* duckduckgo: DuckDuckGo search engine - www.duckduckgo.com
 
-* linkedin: Google search engine, specific search for Linkedin users
+* Exalead: a Meta search engine - https://www.exalead.com/search
 
+* github-code: Github code search engine (Requires Github Personal Access Token, see below.) - www.github.com
+
+* google: Google search engine (Optional Google dorking.) - www.google.com
+
+* hunter: Hunter search engine (Requires API key, see below.) - www.hunter.io
+
+* intelx: Intelx search engine (Requires API key, see below.) - www.intelx.io
+
+* linkedin: Google search engine, specific search for Linkedin users - www.linkedin.com
+
+* netcraft: Netcraft Data Mining - www.netcraft.com
+
+* otx: AlienVault Open Threat Exchange - https://otx.alienvault.com
+
+* securityTrails: Security Trails search engine, the world's largest repository<br>
+  of historical DNS data (Requires API key, see below.) - www.securitytrails.com
+
+* shodan: Shodan search engine, will search for ports and banners from discovered<br>
+  hosts - www.shodanhq.com
+
+* Spyse: Web research tools for professionals(Requires an API key) - https://spyse.com/
+
+* Suip: Web research tools(This module can take 10 mins+ to run but it is worth the wait) - https://suip.biz/
+
+* threatcrowd: Open source threat intelligence - www.threatcrowd.org
+
+* trello: Search trello boards (Uses Google search.)
+
+* twitter: Twitter accounts related to a specific domain (Uses Google search.)
 
 * vhost: Bing virtual hosts search
 
-* twitter: Twitter accounts related to an specific domain (uses google search)
-
-* googleplus: users that works in target company (uses google search)
+* virustotal: virustotal.com domain search
 
 * yahoo: Yahoo search engine
 
-* baidu: Baidu search engine
-
-* shodan: Shodan Computer search engine, will search for ports and banner of the
-         discovered hosts  (http://www.shodanhq.com/)
-
-* hunter: Hunter search engine (you need to add your Key in the discovery/huntersearch.py file) 
-
-* google-certificates: Google Certificate Transparency report 
 
 Active:
 -------
-* DNS brute force: this plugin will run a dictionary brute force enumeration
-* DNS reverse lookup: reverse lookup of ip´s discovered in order to find hostnames
-* DNS TDL expansion: TLD dictionary brute force enumeration
+* DNS brute force: dictionary brute force enumeration
 
 
-Modules that need API keys to work:
-----------------------------------
-* googleCSE: You need to create a Google Custom Search engine(CSE), and add your
- Google API key and CSE ID in the plugin (discovery/googleCSE.py)
-* shodan: You need to provide your API key in discovery/shodansearch.py (one provided at the moment)
-* hunter: You need to provide your API key in discovery/huntersearch.py (none is provided at the moment)  
+Modules that require an API key:
+--------------------------------
+Add your keys to api-keys.yaml
+
+* bingapi
+* github
+* hunter
+* intelx
+* securityTrails
+* shodan
+* spyse
 
 Dependencies:
-------------
-* Requests library (http://docs.python-requests.org/en/latest/)
-`pip install requests`
-* Beautiful Soup 4 (https://pypi.org/project/beautifulsoup4//)
-`  pip install beautifulsoup4`
+-------------
+* Python 3.7+
+* python3 -m pip install pipenv
+* pipenv install
 
-Changelog in 3.0.0:
-------------------
-* Subdomain takeover checks
-* Port scanning (basic)
-* Improved DNS dictionary
-* Shodan DB search fixed
-* Result storage in Sqlite
-
-
-Comments? Bugs? Requests?
-------------------------
+Comments, bugs, or requests?
+----------------------------
+* [![Twitter Follow](https://img.shields.io/twitter/follow/laramies.svg?style=social&label=Follow)](https://twitter.com/laramies) Christian Martorella @laramies
 cmartorella@edge-security.com
+* [![Twitter Follow](https://img.shields.io/twitter/follow/NotoriousRebel1.svg?style=social&label=Follow)](https://twitter.com/NotoriousRebel1) Matthew Brown @NotoriousRebel1
+* [![Twitter Follow](https://img.shields.io/twitter/follow/jay_townsend1.svg?style=social&label=Follow)](https://twitter.com/jay_townsend1) Jay "L1ghtn1ng" Townsend @jay_townsend1
 
-Updates:
---------
-https://github.com/laramies/theHarvester
+Main contributors:
+------------------
+* [![Twitter Follow](https://img.shields.io/twitter/follow/NotoriousRebel1.svg?style=social&label=Follow)](https://twitter.com/NotoriousRebel1) Matthew Brown @NotoriousRebel1
+* [![Twitter Follow](https://img.shields.io/twitter/follow/jay_townsend1.svg?style=social&label=Follow)](https://twitter.com/jay_townsend1) Jay "L1ghtn1ng" Townsend @jay_townsend1
+* [![Twitter Follow](https://img.shields.io/twitter/follow/discoverscripts.svg?style=social&label=Follow)](https://twitter.com/discoverscripts) Lee Baird @discoverscripts 
+* [![LinkedIn](https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x25.png)](https://www.linkedin.com/in/janoszold/)  Janos Zold
 
 Thanks:
 -------
-* Matthew Brown @NotoriousRebel
-* Janos Zold @Jzold 
-* John Matherly -  SHODAN project
-* Lee Baird for suggestions and bugs reporting
-* Ahmed Aboul Ela - subdomain names dictionary (big and small)
+* John Matherly - Shodan project
+* Ahmed Aboul Ela - subdomain names dictionaries (big and small)

@@ -1,0 +1,31 @@
+dist: bionic
+language: python
+cache: pip
+matrix:
+    include:
+    - python: '3.7'
+      env: TEST_SUITE=suite_3_7
+    - python: '3.8-dev'
+      env: TEST_SUITE=suite_3_8_dev
+before_install:
+  - pip install -r requirements.txt
+install:
+- python setup.py test
+script:
+- python theHarvester.py -d metasploit.com -b baidu,bing,certspotter,crtsh,dnsdumpster,dogpile,duckduckgo,exalead,linkedin,netcraft,otx,intelx,threatcrowd,trello,twitter,virustotal,yahoo -l 200
+- pytest
+- flake8 . --count --show-source --statistics
+- mypy --pretty theHarvester/discovery/*.py
+
+notifications:
+  email: false
+  slack:
+    rooms:
+      secure: "CAdDTjl1+X4Yc6hEw2um/KFjKkwhkIMQUAZXEa0KJGQtNORIE48eQw8spOvvWZCd8Ft4Z3leDDXIy0iGqU40H6zVTd01bxRxJwrZLxbpwdZvzXdlWBNf75JsqpXA3evrHfchAsQvYWxtcC0QU5baUnsq2oz5z9v3/920HNBOgtA2YPY0chWedl6JjIidmHBDkPxqKcaR9f9i7kC7BBVYjUm1GyDiE0KGaIRwcUflqbKBMQsnRfk9dv2IK4vbbERyuP9dju7MzksL9eAr/P2PS1jkTGivzAPEfRHNSw0Wfg12bJ7DB/PpnblSVhhQ12WC3jhcBE7Yhk78uFUjHCSVlVDcGV6Bco5y3vLYxPYrt2d6xjkLKRO2Lm1m/kIpSkgvZS3WG40hjMmHqb4hjFLIC6MhggLer1r05XPX4z6BMb0sSLEU6ySp96yqvVGuwTQfboFksuW2i3HcC8+PUYbpVzW619eLQb4DRIF2wCam0bA+821lZYp6Iyr7S5fNwC/JZlfgjujaRHJspYrEoFoPGRaPYXBLKL+w5EP2q92LzfHqSfoO4dLEwcy8vhil/JZYkrHmfhR5DGgbYRJBWq2rXCjkFCvYuqrRG/dWtEhnqUNhcmDlmykPpt2CqAgAqu+Mi7bpLu1sEukb1SLqybj1GHMVcrHOcXTXtFydsMRM5dE="
+    on_success: always
+    on_failure: always
+    template:
+      - "Repo `%{repository_slug}` *%{result}* build (<%{build_url}|#%{build_number}>) for commit (<%{compare_url}|%{commit}>) on branch `%{branch}`."
+      - "Execution time: *%{duration}*"
+      - "Message: %{message}"
+      - "By: %{author}"
