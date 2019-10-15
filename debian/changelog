@@ -12,6 +12,10 @@ theharvester (3.1-0kali1) kali-dev; urgency=medium
   [ Sophie Brun ]
   * Update debian/watch
   * New upstream version 3.1
+  * Remove obsolete patches
+  * Use debhelper-compat 12
+  * Update packaging to use setup.py
+  * Bump Standards-Version to 4.4.1
 
  -- Sophie Brun <sophie@offensive-security.com>  Tue, 15 Oct 2019 08:59:27 +0200
 
