@@ -1,2 +1,1 @@
-*.py usr/share/theharvester/
-discovery lib wordlists usr/share/theharvester/
+api-keys.yaml /etc/theHarvester/

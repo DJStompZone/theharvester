@@ -4,8 +4,4 @@
 #export DH_VERBOSE=1
 
 %:
-	dh $@ 
-
-override_dh_auto_install:
-	install theHarvester.py $(CURDIR)/debian/theharvester/usr/bin/theharvester
-
+	dh $@ --with python3 --buildsystem=pybuild
