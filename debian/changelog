@@ -1,3 +1,9 @@
+theharvester (3.1-0kali3) kali-dev; urgency=medium
+
+  * Add missing depends: python3-yaml
+
+ -- Sven Höper <sven@hoeper.me>  Tue, 17 Dec 2019 18:22:44 +0100
+
 theharvester (3.1-0kali2) kali-dev; urgency=medium
 
   * Add missing depends: python3-dnspython
