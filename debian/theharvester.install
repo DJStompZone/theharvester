@@ -1,1 +1,2 @@
 api-keys.yaml /etc/theHarvester/
+debian/helper-script/* usr/bin
