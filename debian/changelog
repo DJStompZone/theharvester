@@ -1,3 +1,13 @@
+theharvester (3.1-0kali4) kali-dev; urgency=medium
+
+  * Fix for issue 6450:
+    - Add a link to the wordlists
+    - Use an helper-script to change the run directory
+    - Add a patch to change directory of sqlite db
+  * Bump Standards-Version to 4.5.0
+
+ -- Sophie Brun <sophie@offensive-security.com>  Wed, 08 Jul 2020 12:06:35 +0200
+
 theharvester (3.1-0kali3) kali-dev; urgency=medium
 
   [ Sven Höper ]
