@@ -5,7 +5,7 @@ Maintainer: Kali Developers <devel@kali.org>
 Uploaders: Devon Kearns <dookie@kali.org>,
            Ben Wilson <g0tmi1k@kali.org>
 Build-Depends: debhelper-compat (= 12), dh-python, python3-all, python3-setuptools, python3-gevent, python3-yaml
-Standards-Version: 4.4.1
+Standards-Version: 4.5.0
 Homepage: https://github.com/laramies/theHarvester
 Vcs-Git: https://gitlab.com/kalilinux/packages/theharvester.git
 Vcs-Browser: https://gitlab.com/kalilinux/packages/theharvester
