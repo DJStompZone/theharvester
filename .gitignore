@@ -2,9 +2,14 @@
 *.pyc
 *.sqlite
 *.html
+*.htm
 *.vscode
 *.xml
 debug_results.txt
 venv
 .mypy_cache
 .pytest_cache
+build/
+dist/
+api-keys.yaml
+.DS_Store
