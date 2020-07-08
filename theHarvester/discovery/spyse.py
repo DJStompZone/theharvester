@@ -1,32 +1,35 @@
 from theHarvester.discovery.constants import *
 from theHarvester.lib.core import *
-import requests
 
 
 class SearchSpyse:
 
     def __init__(self, word):
+        self.ips = set()
         self.word = word
         self.key = Core.spyse_key()
         if self.key is None:
             raise MissingKey(True)
         self.results = ''
-        self.totalresults = ''
+        self.hosts = set()
+        self.proxy = False
 
-    def do_search(self):
+    async def do_search(self):
         try:
-            base_url = f'https://api.spyse.com/v1/subdomains?domain={self.word}&api_token={self.key}&page=2'
-            headers = {'User-Agent': Core.get_user_agent()}
-            request = requests.get(base_url, headers=headers)
-            self.results = request.json()
-            # self.totalresults += self.results
-
+            headers = {
+                'accept': 'application/json',
+                'Authorization': f'Bearer {self.key}',
+            }
+            base_url = f'https://api.spyse.com/v3/data/domain/subdomain?limit=100&domain={self.word}'
+            results = await AsyncFetcher.fetch_all([base_url], json=True, proxy=self.proxy, headers=headers)
+            results = results[0]
+            self.hosts = {domain['name'] for domain in results['data']['items']}
         except Exception as e:
             print(f'An exception has occurred: {e}')
 
-    def get_hostnames(self):
-        return self.totalresults
+    async def get_hostnames(self):
+        return self.hosts
 
-    def process(self):
-        self.do_search()
-        print('\tSearching results.')
+    async def process(self, proxy=False):
+        self.proxy = proxy
+        await self.do_search()
