@@ -3,19 +3,22 @@ Date: Wed, 8 Jul 2020 11:53:53 +0200
 Subject: Change sqlite dir to grant user access
 
 ---
- theHarvester/lib/stash.py | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ theHarvester/lib/stash.py | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/theHarvester/lib/stash.py b/theHarvester/lib/stash.py
-index c5ae21a..ca3f152 100644
+index c5ae21a..5e7d8c0 100644
 --- a/theHarvester/lib/stash.py
 +++ b/theHarvester/lib/stash.py
-@@ -1,11 +1,15 @@
+@@ -1,11 +1,18 @@
  import aiosqlite
  import datetime
 +import os
++import appdirs
  
-+db_path = os.path.expanduser("~/.local/share/theHarvester")
++appname = "theHarvester"
++appauthor = "laramies"
++db_path = appdirs.user_data_dir(appname, appauthor)
 +if not os.path.isdir(db_path):
 +    os.makedirs(db_path)
  
