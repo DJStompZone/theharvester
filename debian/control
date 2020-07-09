@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Kali Developers <devel@kali.org>
 Uploaders: Devon Kearns <dookie@kali.org>,
            Ben Wilson <g0tmi1k@kali.org>
-Build-Depends: debhelper-compat (= 12), dh-python, python3-all, python3-setuptools, python3-gevent, python3-yaml
+Build-Depends: debhelper-compat (= 12), dh-python, python3-all, python3-setuptools, python3-gevent, python3-yaml, python3-aiohttp, python3-certifi, python3-pytest, python3-requests
 Standards-Version: 4.5.0
 Homepage: https://github.com/laramies/theHarvester
 Vcs-Git: https://gitlab.com/kalilinux/packages/theharvester.git
@@ -14,15 +14,21 @@ Package: theharvester
 Architecture: all
 Depends: python3,
          python3-aiodns,
+	 python3-aiohttp,
+	 python3-aiomultiprocess,
+	 python3-aiosqlite,
          python3-bs4,
+	 python3-certifi,
 	 python3-dnspython,
-	 python3-gevent,
-	 python3-grequests,
+	 python3-lxml,
 	 python3-netaddr,
          python3-plotly,
+	 python3-pyppeteer,
          python3-requests,
+	 python3-retrying,
 	 python3-shodan,
 	 python3-texttable,
+	 python3-uvloop,
 	 python3-yaml,
          ${misc:Depends},
 	 ${python3:Depends}

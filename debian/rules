@@ -3,6 +3,9 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
+export PYBUILD_BEFORE_TEST=cp proxies.yaml {build_dir}/proxies.yaml
+export PYBUILD_AFTER_TEST= rm {build_dir}/proxies.yaml
+
 %:
 	dh $@ --with python3 --buildsystem=pybuild
 
