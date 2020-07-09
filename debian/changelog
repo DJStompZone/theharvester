@@ -1,3 +1,14 @@
+theharvester (3.2~git20200706-0kali1) kali-experimental; urgency=medium
+
+  * New upstream version 3.2~git20200706
+  * Update debian/* to use new setup.py
+  * Add missing build-deps/deps and run the tests
+  * Use appdirs module to define sqlite dir
+  * Add a __init__.py file
+  * Add a patch to fix path to dorks.txt
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 09 Jul 2020 16:14:54 +0200
+
 theharvester (3.1-0kali4) kali-dev; urgency=medium
 
   * Fix for issue 6450:
