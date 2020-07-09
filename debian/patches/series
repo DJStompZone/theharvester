@@ -1,2 +1,3 @@
 Remove-entry_point-to-install-helper-script.patch
 Change-sqlite-dir-to-grant-user-access.patch
+Fix-path-to-dorks.txt-if-wordlist-dorks.txt-doesn-t-exist.patch

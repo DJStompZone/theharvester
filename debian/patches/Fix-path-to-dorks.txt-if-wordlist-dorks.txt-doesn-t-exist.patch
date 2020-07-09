@@ -1,0 +1,24 @@
+From: Sophie Brun <sophie@offensive-security.com>
+Date: Thu, 9 Jul 2020 14:43:01 +0200
+Subject: Fix path to dorks.txt if wordlist/dorks.txt doesn't exist
+
+---
+ theHarvester/discovery/googlesearch.py | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/theHarvester/discovery/googlesearch.py b/theHarvester/discovery/googlesearch.py
+index 844fa53..c9e927e 100644
+--- a/theHarvester/discovery/googlesearch.py
++++ b/theHarvester/discovery/googlesearch.py
+@@ -104,8 +104,9 @@ async def append_dorks(self):
+         try:
+             with open('wordlists/dorks.txt', mode='r') as fp:
+                 self.dorks = [dork.strip() for dork in fp]
+-        except FileNotFoundError as error:
+-            print(error)
++        except FileNotFoundError:
++            with open('/etc/theHarvester/dorks.txt', mode='r') as fp:
++                self.dorks = [dork.strip() for dork in fp]
+ 
+     async def construct_dorks(self):
+         # Format is: site:targetwebsite.com + space + inurl:admindork
