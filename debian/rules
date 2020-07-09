@@ -5,3 +5,10 @@
 
 %:
 	dh $@ --with python3 --buildsystem=pybuild
+
+override_dh_install:
+	dh_install
+	# the setup doesn't install this script so install it manually and
+	# rename it theHarvester to avoid circular import issue
+	# see https://github.com/laramies/theHarvester/issues/401
+	mv theHarvester.py debian/theharvester/usr/bin/theHarvester

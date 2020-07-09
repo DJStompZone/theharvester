@@ -7,19 +7,19 @@ Subject: Change sqlite dir to grant user access
  1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/theHarvester/lib/stash.py b/theHarvester/lib/stash.py
-index 02115e4..4e9af58 100644
+index c5ae21a..ca3f152 100644
 --- a/theHarvester/lib/stash.py
 +++ b/theHarvester/lib/stash.py
 @@ -1,11 +1,15 @@
+ import aiosqlite
  import datetime
- import sqlite3
 +import os
  
 +db_path = os.path.expanduser("~/.local/share/theHarvester")
 +if not os.path.isdir(db_path):
 +    os.makedirs(db_path)
  
- class stash_manager:
+ class StashManager:
  
      def __init__(self):
 -        self.db = "stash.sqlite"

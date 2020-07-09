@@ -13,7 +13,7 @@ This patch should probably be removed for the next upstream release.
  1 file changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/setup.py b/setup.py
-index 3fe96c2..61fe18f 100644
+index 71c62f3..fa185f4 100755
 --- a/setup.py
 +++ b/setup.py
 @@ -14,12 +14,12 @@
@@ -34,4 +34,4 @@ index 3fe96c2..61fe18f 100644
 +#
      classifiers=[
          "Programming Language :: Python :: 3",
-         "Programming Language :: Python :: 3.6",
+         "Programming Language :: Python :: 3.7",
