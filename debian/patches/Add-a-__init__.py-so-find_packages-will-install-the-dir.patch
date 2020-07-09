@@ -1,0 +1,16 @@
+From: Sophie Brun <sophie@offensive-security.com>
+Date: Thu, 9 Jul 2020 14:54:45 +0200
+Subject: Add a __init__.py so find_packages will install the dir
+
+---
+ theHarvester/screenshot/__init__.py | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 theHarvester/screenshot/__init__.py
+
+diff --git a/theHarvester/screenshot/__init__.py b/theHarvester/screenshot/__init__.py
+new file mode 100644
+index 0000000..8b13789
+--- /dev/null
++++ b/theHarvester/screenshot/__init__.py
+@@ -0,0 +1 @@
++
