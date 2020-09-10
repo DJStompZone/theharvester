@@ -1,56 +1,130 @@
 # coding=utf-8
 
-import random
-from typing import Set, Union, Any
+from typing import Set, Union, Any, Tuple, List
 import yaml
+import asyncio
+import aiohttp
+import random
+import ssl
+import certifi
 
 
 class Core:
     @staticmethod
     def version() -> str:
-        return '3.1.0'
+        return '3.2.0'
 
     @staticmethod
     def bing_key() -> str:
-        with open('api-keys.yaml', 'r') as api_keys:
-            keys = yaml.safe_load(api_keys)
-            return keys['apikeys']['bing']['key']
+        try:
+            with open('/etc/theHarvester/api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+        except FileNotFoundError:
+            with open('api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+                return keys['apikeys']['bing']['key']
+        return keys['apikeys']['bing']['key']
 
     @staticmethod
     def github_key() -> str:
-        with open('api-keys.yaml', 'r') as api_keys:
-            keys = yaml.safe_load(api_keys)
-            return keys['apikeys']['github']['key']
+        try:
+            with open('/etc/theHarvester/api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+        except FileNotFoundError:
+            with open('api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+                return keys['apikeys']['github']['key']
+        return keys['apikeys']['github']['key']
 
     @staticmethod
     def hunter_key() -> str:
-        with open('api-keys.yaml', 'r') as api_keys:
-            keys = yaml.safe_load(api_keys)
+        try:
+            with open('/etc/theHarvester/api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+        except FileNotFoundError:
+            with open('api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
             return keys['apikeys']['hunter']['key']
+        return keys['apikeys']['hunter']['key']
 
     @staticmethod
     def intelx_key() -> str:
-        with open('api-keys.yaml', 'r') as api_keys:
-            keys = yaml.safe_load(api_keys)
-            return keys['apikeys']['intelx']['key']
+        try:
+            with open('/etc/theHarvester/api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+        except FileNotFoundError:
+            with open('api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+                return keys['apikeys']['intelx']['key']
+        return keys['apikeys']['intelx']['key']
+
+    @staticmethod
+    def pentest_tools_key() -> str:
+        try:
+            with open('/etc/theHarvester/api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+        except FileNotFoundError:
+            with open('api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+                return keys['apikeys']['pentestTools']['key']
+        return keys['apikeys']['pentestTools']['key']
+
+    @staticmethod
+    def projectdiscovery_key() -> str:
+        try:
+            with open('/etc/theHarvester/api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+        except FileNotFoundError:
+            with open('api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+                return keys['apikeys']['projectDiscovery']['key']
+        return keys['apikeys']['projectDiscovery']['key']
 
     @staticmethod
     def security_trails_key() -> str:
-        with open('api-keys.yaml', 'r') as api_keys:
-            keys = yaml.safe_load(api_keys)
-            return keys['apikeys']['securityTrails']['key']
+        try:
+            with open('/etc/theHarvester/api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+        except FileNotFoundError:
+            with open('api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+                return keys['apikeys']['securityTrails']['key']
+        return keys['apikeys']['securityTrails']['key']
 
     @staticmethod
     def shodan_key() -> str:
-        with open('api-keys.yaml', 'r') as api_keys:
-            keys = yaml.safe_load(api_keys)
-            return keys['apikeys']['shodan']['key']
+        try:
+            with open('/etc/theHarvester/api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+        except FileNotFoundError:
+            with open('api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+                return keys['apikeys']['shodan']['key']
+        return keys['apikeys']['shodan']['key']
 
     @staticmethod
     def spyse_key() -> str:
-        with open('api-keys.yaml', 'r') as api_keys:
-            keys = yaml.safe_load(api_keys)
-            return keys['apikeys']['spyse']['key']
+        try:
+            with open('/etc/theHarvester/api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+        except FileNotFoundError:
+            with open('api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+                return keys['apikeys']['spyse']['key']
+        return keys['apikeys']['spyse']['key']
+
+    @staticmethod
+    def proxy_list() -> List:
+        try:
+            with open('/etc/theHarvester/proxies.yaml', 'r') as proxy_file:
+                keys = yaml.safe_load(proxy_file)
+        except FileNotFoundError:
+            with open('proxies.yaml', 'r') as proxy_file:
+                keys = yaml.safe_load(proxy_file)
+                http_list = [f'http://{proxy}' for proxy in keys['http']] if keys['http'] is not None else []
+                return http_list
+        http_list = [f'http://{proxy}' for proxy in keys['http']] if keys['http'] is not None else []
+        return http_list
 
     @staticmethod
     def banner() -> None:
@@ -61,39 +135,45 @@ class Core:
         print(r"* | |_| | | |  __/ / __  / (_| | |   \ V /  __/\__ \ ||  __/ |    *")
         print(r"*  \__|_| |_|\___| \/ /_/ \__,_|_|    \_/ \___||___/\__\___|_|    *")
         print('*                                                                 *')
-        print(f'* theHarvester {Core.version()}                                         *')
+        print('* theHarvester {}                                          *'.format(Core.version()))
         print('* Coded by Christian Martorella                                   *')
         print('* Edge-Security Research                                          *')
         print('* cmartorella@edge-security.com                                   *')
         print('*                                                                 *')
-        print('******************************************************************* \n\n \033[0m')
+        print('******************************************************************* \n\n\033[0m')
 
     @staticmethod
     def get_supportedengines() -> Set[Union[str, Any]]:
         supportedengines = {'baidu',
                             'bing',
                             'bingapi',
+                            'bufferoverun',
                             'certspotter',
                             'crtsh',
                             'dnsdumpster',
-                            'dogpile',
                             'duckduckgo',
                             'exalead',
                             'github-code',
                             'google',
+                            'hackertarget',
                             'hunter',
                             'intelx',
                             'linkedin',
                             'linkedin_links',
                             'netcraft',
                             'otx',
+                            'pentesttools',
+                            'projectdiscovery',
+                            'qwant',
+                            'rapiddns',
                             'securityTrails',
-                            'suip',
+                            'sublist3r',
                             'spyse',
                             'threatcrowd',
+                            'threatminer',
                             'trello',
                             'twitter',
-                            'vhost',
+                            'urlscan',
                             'virustotal',
                             'yahoo',
                             }
@@ -333,3 +413,134 @@ class Core:
             'Mozilla/5.0 (Windows NT 5.1; U; de; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6 Opera 11.00'
         ]
         return random.choice(user_agents)
+
+
+class AsyncFetcher:
+    proxy_list = Core.proxy_list()
+
+    @classmethod
+    async def post_fetch(cls, url, headers='', data='', params='', json=False, proxy=False):
+        if len(headers) == 0:
+            headers = {'User-Agent': Core.get_user_agent()}
+        timeout = aiohttp.ClientTimeout(total=720)
+        # by default timeout is 5 minutes, changed to 12 minutes for suip module
+        # results are well worth the wait
+        try:
+            if proxy:
+                proxy = str(random.choice(cls().proxy_list))
+                if params != "":
+                    async with aiohttp.ClientSession(headers=headers, timeout=timeout) as session:
+                        async with session.get(url, params=params, proxy=proxy) as response:
+                            await asyncio.sleep(2)
+                            return await response.text() if json is False else await response.json()
+                else:
+                    async with aiohttp.ClientSession(headers=headers, timeout=timeout) as session:
+                        async with session.get(url, proxy=proxy) as response:
+                            await asyncio.sleep(2)
+                            return await response.text() if json is False else await response.json()
+            elif params == '':
+                async with aiohttp.ClientSession(headers=headers, timeout=timeout) as session:
+                    async with session.post(url, data=data) as resp:
+                        await asyncio.sleep(3)
+                        return await resp.text() if json is False else await resp.json()
+            else:
+                async with aiohttp.ClientSession(headers=headers, timeout=timeout) as session:
+                    sslcontext = ssl.create_default_context(cafile=certifi.where())
+                    async with session.post(url, data=data, ssl=sslcontext, params=params) as resp:
+                        await asyncio.sleep(3)
+                        return await resp.text() if json is False else await resp.json()
+        except Exception as e:
+            print(f'An exception has occurred: {e}')
+            return ''
+
+    @staticmethod
+    async def fetch(session, url, params='', json=False, proxy="") -> Union[str, dict, list, bool]:
+        # This fetch method solely focuses on get requests
+        try:
+            # Wrap in try except due to 0x89 png/jpg files
+            # This fetch method solely focuses on get requests
+            # TODO determine if method for post requests is necessary
+            if proxy != "":
+                if params != "":
+                    sslcontext = ssl.create_default_context(cafile=certifi.where())
+                    async with session.get(url, ssl=sslcontext, params=params, proxy=proxy) as response:
+                        return await response.text() if json is False else await response.json()
+                else:
+                    sslcontext = ssl.create_default_context(cafile=certifi.where())
+                    async with session.get(url, ssl=sslcontext, proxy=proxy) as response:
+                        await asyncio.sleep(2)
+                        return await response.text() if json is False else await response.json()
+
+            if params != '':
+                sslcontext = ssl.create_default_context(cafile=certifi.where())
+                async with session.get(url, ssl=sslcontext, params=params) as response:
+                    await asyncio.sleep(2)
+                    return await response.text() if json is False else await response.json()
+
+            else:
+                sslcontext = ssl.create_default_context(cafile=certifi.where())
+                async with session.get(url, ssl=sslcontext) as response:
+                    await asyncio.sleep(2)
+                    return await response.text() if json is False else await response.json()
+        except Exception as e:
+            print(f'An exception has occurred: {e}')
+            return ''
+
+    @staticmethod
+    async def takeover_fetch(session, url, proxy="") -> Union[Tuple[Any, Any], str]:
+        # This fetch method solely focuses on get requests
+        try:
+            # Wrap in try except due to 0x89 png/jpg files
+            # This fetch method solely focuses on get requests
+            # TODO determine if method for post requests is necessary
+            url = f'http://{url}' if str(url).startswith(('http:', 'https:')) is False else url
+            # Clean up urls with proper schemas
+            if proxy != "":
+                async with session.get(url, proxy=proxy) as response:
+                    await asyncio.sleep(2)
+                    return url, await response.text()
+            else:
+                async with session.get(url) as response:
+                    await asyncio.sleep(2)
+                    return url, await response.text()
+        except Exception:
+            return url, ''
+
+    @classmethod
+    async def fetch_all(cls, urls, headers='', params='', json=False, takeover=False, proxy=False) -> list:
+        # By default timeout is 5 minutes, 60 seconds should suffice
+        timeout = aiohttp.ClientTimeout(total=60)
+        if len(headers) == 0:
+            headers = {'User-Agent': Core.get_user_agent()}
+        if takeover:
+            async with aiohttp.ClientSession(headers=headers, timeout=aiohttp.ClientTimeout(total=15)) as session:
+                if proxy:
+                    tuples = await asyncio.gather(
+                        *[AsyncFetcher.takeover_fetch(session, url, proxy=random.choice(cls().proxy_list)) for url in
+                          urls])
+                    return tuples
+                else:
+                    tuples = await asyncio.gather(*[AsyncFetcher.takeover_fetch(session, url) for url in urls])
+                    return tuples
+
+        if len(params) == 0:
+            async with aiohttp.ClientSession(headers=headers, timeout=timeout) as session:
+                if proxy:
+                    texts = await asyncio.gather(
+                        *[AsyncFetcher.fetch(session, url, json=json, proxy=random.choice(cls().proxy_list)) for url in
+                          urls])
+                    return texts
+                else:
+                    texts = await asyncio.gather(*[AsyncFetcher.fetch(session, url, json=json) for url in urls])
+                    return texts
+        else:
+            # Indicates the request has certain params
+            async with aiohttp.ClientSession(headers=headers, timeout=timeout) as session:
+                if proxy:
+                    texts = await asyncio.gather(*[AsyncFetcher.fetch(session, url, params, json,
+                                                                      proxy=random.choice(cls().proxy_list)) for url in
+                                                   urls])
+                    return texts
+                else:
+                    texts = await asyncio.gather(*[AsyncFetcher.fetch(session, url, params, json) for url in urls])
+                    return texts
