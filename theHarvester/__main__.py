@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from theHarvester.discovery import *
+from theHarvester.discovery import dnssearch, takeover, shodansearch
 from theHarvester.discovery.constants import *
 from theHarvester.lib import hostchecker
 from theHarvester.lib import reportgraph
@@ -32,10 +33,11 @@ async def start():
     parser.add_argument('-c', '--dns-brute', help='Perform a DNS brute force on the domain.', default=False, action='store_true')
     parser.add_argument('-f', '--filename', help='Save the results to an HTML and/or XML file.', default='', type=str)
     parser.add_argument('-b', '--source', help='''baidu, bing, bingapi, bufferoverun, certspotter, crtsh, dnsdumpster,
-                            dogpile, duckduckgo, exalead, github-code, google,
-                            hackertarget, hunter, intelx, linkedin, linkedin_links, netcraft, otx, pentesttools,
-                            rapiddns, securityTrails, spyse, sublist3r, suip, threatcrowd, threatminer,
-                            trello, twitter, urlscan, virustotal, yahoo, all''')
+                            duckduckgo, exalead, github-code, google,
+                            hackertarget, hunter, intelx, linkedin, linkedin_links,
+                            netcraft, otx, pentesttools, projectdiscovery,
+                            qwant, rapiddns, securityTrails, spyse, sublist3r, threatcrowd, threatminer,
+                            trello, twitter, urlscan, virustotal, yahoo''')
 
     args = parser.parse_args()
     filename: str = args.filename
@@ -46,7 +48,6 @@ async def start():
     except Exception:
         pass
 
-    # args = parser.parse_args()
     all_emails: list = []
     all_hosts: list = []
     all_ip: list = []
@@ -212,14 +213,6 @@ async def start():
                     except Exception as e:
                         print(f'\033[93m[!] An error occurred with dnsdumpster: {e} \033[0m')
 
-                elif engineitem == 'dogpile':
-                    try:
-                        from theHarvester.discovery import dogpilesearch
-                        dogpile_search = dogpilesearch.SearchDogpile(word, limit)
-                        stor_lst.append(store(dogpile_search, engineitem, store_host=True, store_emails=True))
-                    except Exception as e:
-                        print(f'\033[93m[!] An error occurred with Dogpile: {e} \033[0m')
-
                 elif engineitem == 'duckduckgo':
                     from theHarvester.discovery import duckduckgosearch
                     duckduckgo_search = duckduckgosearch.SearchDuckDuckGo(word, limit)
@@ -309,6 +302,22 @@ async def start():
                         else:
                             print(f'An exception has occurred in PentestTools search: {e}')
 
+                elif engineitem == 'projectdiscovery':
+                    from theHarvester.discovery import projectdiscovery
+                    try:
+                        projectdiscovery_search = projectdiscovery.SearchDiscovery(word)
+                        stor_lst.append(store(projectdiscovery_search, engineitem, store_host=True))
+                    except Exception as e:
+                        if isinstance(e, MissingKey):
+                            print(e)
+                        else:
+                            print(f'An exception has occurred in ProjectDiscovery search: {e}')
+
+                elif engineitem == 'qwant':
+                    from theHarvester.discovery import qwantsearch
+                    qwant_search = qwantsearch.SearchQwant(word, start, limit)
+                    stor_lst.append(store(qwant_search, engineitem, store_host=True, store_emails=True))
+
                 elif engineitem == 'rapiddns':
                     from theHarvester.discovery import rapiddns
                     try:
@@ -327,14 +336,6 @@ async def start():
                             print(e)
                         else:
                             pass
-
-                elif engineitem == 'suip':
-                    from theHarvester.discovery import suip
-                    try:
-                        suip_search = suip.SearchSuip(word)
-                        stor_lst.append(store(suip_search, engineitem, store_host=True))
-                    except Exception as e:
-                        print(e)
 
                 elif engineitem == 'sublist3r':
                     from theHarvester.discovery import sublist3r
@@ -503,7 +504,6 @@ async def start():
         await db.store_all(word, hosts, 'host', 'dns_bruteforce')
 
     # TakeOver Checking
-
     if takeover_status:
         print('\n[*] Performing subdomain takeover check')
         print('\n[*] Subdomain Takeover checking IS ACTIVE RECON')
@@ -587,7 +587,7 @@ async def start():
         # Verify path exists if not create it or if user does not create it skip screenshot
         if path_exists:
             await screen_shotter.verify_installation()
-            print(f'\nScreenshots can be found: {screen_shotter.output}{screen_shotter.slash}')
+            print(f'\nScreenshots can be found in: {screen_shotter.output}{screen_shotter.slash}')
             start_time = time.perf_counter()
             print('Filtering domains for ones we can reach')
             unique_resolved_domains = {url.split(':')[0]for url in full if ':' in url and 'www.' not in url}
@@ -704,13 +704,13 @@ async def start():
                 for x in all_emails:
                     file.write('<email>' + x + '</email>')
                 for x in full:
-                    host, ip = x.split(':') if ':' in x else (x, '')
+                    host, ip = x.split(':', 1) if ':' in x else (x, '')
                     if ip and len(ip) > 3:
                         file.write(f'<host><ip>{ip}</ip><hostname>{host}</hostname></host>')
                     else:
                         file.write(f'<host>{host}</host>')
                 for x in vhost:
-                    host, ip = x.split(':') if ':' in x else (x, '')
+                    host, ip = x.split(':', 1) if ':' in x else (x, '')
                     if ip and len(ip) > 3:
                         file.write(f'<vhost><ip>{ip} </ip><hostname>{host}</hostname></vhost>')
                     else:

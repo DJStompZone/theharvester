@@ -12,7 +12,7 @@ import certifi
 class Core:
     @staticmethod
     def version() -> str:
-        return '3.2.0dev3'
+        return '3.2.0'
 
     @staticmethod
     def bing_key() -> str:
@@ -68,6 +68,17 @@ class Core:
                 keys = yaml.safe_load(api_keys)
                 return keys['apikeys']['pentestTools']['key']
         return keys['apikeys']['pentestTools']['key']
+
+    @staticmethod
+    def projectdiscovery_key() -> str:
+        try:
+            with open('/etc/theHarvester/api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+        except FileNotFoundError:
+            with open('api-keys.yaml', 'r') as api_keys:
+                keys = yaml.safe_load(api_keys)
+                return keys['apikeys']['projectDiscovery']['key']
+        return keys['apikeys']['projectDiscovery']['key']
 
     @staticmethod
     def security_trails_key() -> str:
@@ -140,7 +151,6 @@ class Core:
                             'certspotter',
                             'crtsh',
                             'dnsdumpster',
-                            'dogpile',
                             'duckduckgo',
                             'exalead',
                             'github-code',
@@ -153,9 +163,10 @@ class Core:
                             'netcraft',
                             'otx',
                             'pentesttools',
+                            'projectdiscovery',
+                            'qwant',
                             'rapiddns',
                             'securityTrails',
-                            'suip',
                             'sublist3r',
                             'spyse',
                             'threatcrowd',
