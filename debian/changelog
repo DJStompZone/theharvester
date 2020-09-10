@@ -1,3 +1,10 @@
+theharvester (3.2.0-0kali1) kali-dev; urgency=medium
+
+  * New upstream version 3.2~git20200706
+  * New upstream version 3.2.0
+
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 10 Sep 2020 14:44:16 +0200
+
 theharvester (3.1-0kali4) kali-dev; urgency=medium
 
   * Fix for issue 6450:
