@@ -1,9 +1,12 @@
 theharvester (3.2.0-0kali1) kali-dev; urgency=medium
 
-  * New upstream version 3.2~git20200706
   * New upstream version 3.2.0
+  * Remove merged patches
+  * Update build-deps and deps
+  * Update installation to use usptream setup.py
+  * Add lintian-overrides for breakout-link
 
- -- Sophie Brun <sophie@offensive-security.com>  Thu, 10 Sep 2020 14:44:16 +0200
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 11 Sep 2020 09:30:08 +0200
 
 theharvester (3.1-0kali4) kali-dev; urgency=medium
 
