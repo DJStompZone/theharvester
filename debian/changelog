@@ -94,7 +94,7 @@ theharvester (3.0-0kali1) kali-dev; urgency=medium
 
   * Upstream update
 
- -- Ben Wilson <g0tmi1k@offensive-security.com>  Tue, 09 Oct 2018 12:19:07 +0100
+ -- Ben Wilson <g0tmi1k@kali.org>  Tue, 09 Oct 2018 12:19:07 +0100
 
 theharvester (2.7.2~20180322-0kali1) kali-dev; urgency=medium
 
