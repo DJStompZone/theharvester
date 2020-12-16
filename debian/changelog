@@ -1,3 +1,13 @@
+theharvester (3.2.1-0kali1) kali-dev; urgency=medium
+
+  [ Ben Wilson ]
+  * Fix email address
+
+  [ Sophie Brun ]
+  * New upstream version 3.2.1
+
+ -- Sophie Brun <sophie@offensive-security.com>  Wed, 16 Dec 2020 08:41:59 +0100
+
 theharvester (3.2.0-0kali1) kali-dev; urgency=medium
 
   * New upstream version 3.2.0
