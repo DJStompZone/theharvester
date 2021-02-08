@@ -1,3 +1,9 @@
+theharvester (3.2.3-0kali1) kali-dev; urgency=medium
+
+  * New upstream version 3.2.3
+
+ -- Sophie Brun <sophie@offensive-security.com>  Mon, 08 Feb 2021 11:45:55 +0100
+
 theharvester (3.2.2-0kali2) kali-dev; urgency=medium
 
   * Fix installation of the wordlists
