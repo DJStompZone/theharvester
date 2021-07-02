@@ -8,6 +8,9 @@ Build-Depends: debhelper-compat (= 12),
                python3-aiohttp,
                python3-all,
                python3-certifi,
+	       python3-pytest,
+	       python3-pytest-asyncio,
+               python3-requests,
                python3-setuptools,
                python3-yaml
 Standards-Version: 4.5.1
