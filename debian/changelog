@@ -2,11 +2,14 @@ theharvester (4.0.0-0kali1) kali-dev; urgency=medium
 
   [ Kali Janitor ]
   * Trim trailing whitespace.
-  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository, Repository-Browse.
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+    Repository-Browse.
   * Set upstream metadata fields: Description.
 
   [ Sophie Brun ]
   * New upstream version 4.0.0
+  * Run the tests during the build
+  * Add missing dependencies
 
  -- Sophie Brun <sophie@offensive-security.com>  Fri, 02 Jul 2021 09:37:47 +0200
 
