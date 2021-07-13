@@ -1,3 +1,9 @@
+theharvester (4.0.0-0kali2) kali-dev; urgency=medium
+
+  * Add missing depends: python3-fastapi >= 0.66.0
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 13 Jul 2021 10:19:28 +0200
+
 theharvester (4.0.0-0kali1) kali-dev; urgency=medium
 
   [ Kali Janitor ]
