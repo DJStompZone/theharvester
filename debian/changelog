@@ -1,3 +1,9 @@
+theharvester (4.0.0-0kali4) kali-dev; urgency=medium
+
+  * Depend on kali-defaults
+
+ -- Ben Wilson <g0tmi1k@kali.org>  Wed, 25 Aug 2021 12:00:58 +0100
+
 theharvester (4.0.0-0kali3) kali-dev; urgency=medium
 
   * Use kali-deprecated for helper-script
