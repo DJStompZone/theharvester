@@ -2,7 +2,7 @@ theharvester (4.0.0-0kali5) kali-dev; urgency=medium
 
   * Add missing python3-censys dependency
 
- -- Jay Townsend <jay@cybermon.uk>  Tues, 21 Sep 2021 20:23:00 +0100
+ -- Jay Townsend <jay@cybermon.uk>  Tue, 21 Sep 2021 20:23:00 +0100
 
 
 theharvester (4.0.0-0kali4) kali-dev; urgency=medium
