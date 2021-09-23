@@ -4,7 +4,6 @@ theharvester (4.0.0-0kali5) kali-dev; urgency=medium
 
  -- Jay Townsend <jay@cybermon.uk>  Tue, 21 Sep 2021 20:23:00 +0100
 
-
 theharvester (4.0.0-0kali4) kali-dev; urgency=medium
 
   * Depend on kali-defaults
