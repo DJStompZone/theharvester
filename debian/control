@@ -13,7 +13,7 @@ Build-Depends: debhelper-compat (= 12),
                python3-requests,
                python3-setuptools,
                python3-yaml
-Standards-Version: 4.5.1
+Standards-Version: 4.6.0
 Homepage: https://github.com/laramies/theHarvester
 Vcs-Git: https://gitlab.com/kalilinux/packages/theharvester.git
 Vcs-Browser: https://gitlab.com/kalilinux/packages/theharvester
