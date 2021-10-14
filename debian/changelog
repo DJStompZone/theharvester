@@ -1,6 +1,9 @@
 theharvester (4.0.1-0kali1) kali-dev; urgency=medium
 
   * New upstream version 4.0.1
+  * Add new dependency python3-spyse
+  * Bump Standards-Version to 4.6.0
+  * Change autopkgtest
 
  -- Sophie Brun <sophie@offensive-security.com>  Tue, 05 Oct 2021 10:03:59 +0200
 
