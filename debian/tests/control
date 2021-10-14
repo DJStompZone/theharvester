@@ -1,2 +1,2 @@
-Test-Command: theHarvester -h
+Tests: runtests.sh
 Restrictions: superficial
