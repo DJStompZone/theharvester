@@ -178,7 +178,7 @@ theharvester (3.0.1-0kali1) kali-dev; urgency=medium
   * Add missing dependency: python-bs4
   * Refresh patch
 
- -- Sophie Brun <sophie@freexian.com>  Thu, 29 Nov 2018 14:40:11 +0100
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 29 Nov 2018 14:40:11 +0100
 
 theharvester (3.0-0kali1) kali-dev; urgency=medium
 
@@ -194,19 +194,19 @@ theharvester (2.7.2~20180322-0kali1) kali-dev; urgency=medium
   * Refresh patches
   * Add wfuzz as dependency
 
- -- Sophie Brun <sophie@freexian.com>  Thu, 19 Apr 2018 09:11:32 +0200
+ -- Sophie Brun <sophie@offensive-security.com>  Thu, 19 Apr 2018 09:11:32 +0200
 
 theharvester (2.7-0kali1) kali-dev; urgency=medium
 
   * Import new upstream release
 
- -- Sophie Brun <sophie@freexian.com>  Tue, 19 Apr 2016 09:32:54 +0200
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 19 Apr 2016 09:32:54 +0200
 
 theharvester (2.6-0kali1) kali-dev; urgency=medium
 
   * Update watch file
 
- -- Sophie Brun <sophie@freexian.com>  Wed, 27 Jan 2016 10:26:13 +0100
+ -- Sophie Brun <sophie@offensive-security.com>  Wed, 27 Jan 2016 10:26:13 +0100
 
 theharvester (2.6-0kali0) kali; urgency=low
 
