@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
 
-## Quit if anything goes wrong
 set -e
 
 ## Deprecated on 2019-12-18
