@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
-# Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
+# output every command that modifies files on the build system.
+#export DH_VERBOSE = 1
 
 export PYBUILD_BEFORE_TEST=cp proxies.yaml {build_dir}; cp tests/discovery/test_linkedin_links.txt {build_dir}/tests/discovery
 export PYBUILD_AFTER_TEST=rm -rf {build_dir}/proxies.yaml; rm -rf {build_dir}/tests/discovery
