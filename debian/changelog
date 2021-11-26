@@ -1,3 +1,20 @@
+theharvester (4.0.3-0kali1) kali-dev; urgency=medium
+
+  [ Ben Wilson ]
+  * Update email address
+  * Add executable to helper-script
+  * New helper-script format
+  * Consistency with tabs to spaces
+  * Remove template comment and switch spaces to tabs
+
+  [ Jay Townsend ]
+  * Remove orjson dep and change it to ujson instead
+
+  [ Sophie Brun ]
+  * New upstream version 4.0.3
+
+ -- Sophie Brun <sophie@offensive-security.com>  Fri, 26 Nov 2021 09:48:33 +0100
+
 theharvester (4.0.2-0kali1) kali-dev; urgency=medium
 
   * New upstream version 4.0.2
