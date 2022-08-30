@@ -1,3 +1,20 @@
+theharvester (4.2.0-0kali1) kali-dev; urgency=medium
+
+  [ Arnaud Rebillout ]
+  * New upstream version 4.2.0
+  * Build-Depends -= python-spyse
+
+  [ Sophie Brun ]
+  * Update debian/control with minimal versions
+  * Do not run the tests during build (require network)
+  * Bump Standards-Version to 4.6.1 (no changes)
+  * Remove useless field Description in debian/upstream/metadata
+  * Remove useless dir /usr/share/theharvester
+  * Remove useless lintian-overrides
+  * Add autopkgtest
+
+ -- Sophie Brun <sophie@offensive-security.com>  Tue, 30 Aug 2022 17:17:52 +0200
+
 theharvester (4.0.3-0kali1) kali-dev; urgency=medium
 
   [ Ben Wilson ]
