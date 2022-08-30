@@ -1,7 +1,5 @@
 ---
 Bug-Database: https://github.com/laramies/theHarvester/issues
 Bug-Submit: https://github.com/laramies/theHarvester/issues/new
-Description: theHarvester is a very simple, yet effective tool designed to be used
-  in the early stages of a penetration test
 Repository: https://github.com/laramies/theHarvester.git
 Repository-Browse: https://github.com/laramies/theHarvester
