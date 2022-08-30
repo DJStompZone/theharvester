@@ -3,10 +3,9 @@
 # output every command that modifies files on the build system.
 #export DH_VERBOSE = 1
 
-export PYBUILD_BEFORE_TEST=cp proxies.yaml {build_dir}; cp tests/discovery/test_linkedin_links.txt {build_dir}/tests/discovery
-export PYBUILD_AFTER_TEST=rm -rf {build_dir}/proxies.yaml; rm -rf {build_dir}/tests/discovery
-# remove tests using connection
-export PYBUILD_TEST_ARGS=-k 'test_api' -k 'test_links_linkedin'
-
 %:
 	dh $@ --with python3 --buildsystem=pybuild
+
+override_dh_auto_test:
+	# do not run tests during the build: most of the tests require
+	# network
